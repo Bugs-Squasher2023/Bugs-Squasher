@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require("express-session");
 
-const patients = require('../halodoc/src/database/patients.json');
+const patients = require('./client/src/database/patients.json');
 
 
 const app = express();
