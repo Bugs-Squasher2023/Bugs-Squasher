@@ -1,0 +1,23 @@
+body{
+    padding: 30px;
+}
+
+td{
+    border-collapse: separate; 
+    border-spacing: 15px;
+}
+
+button{
+    padding: 10px;
+    display: inline-block;
+    background-color: #5fb0ad;
+    border-radius: 20px;
+    border: 10px solid #fff;
+    
+}
+button:hover{
+    padding: 12px;
+    background-color: #02A98D;
+    
+}
+
