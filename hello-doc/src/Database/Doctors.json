@@ -1,0 +1,56 @@
+[{
+    "id": "1",
+    "firstName": "Charlie",
+    "lastName": "Doctor",
+    "email": "johndoe@email.com",
+    "password": "123456",
+    "phoneNumber": "0123456789",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1?v=4"
+},
+{
+    "id": "7",
+    "firstName": "Charlie",
+    "lastName": "Doctor",
+    "email": "hh23342e@email.com",
+    "password": "123456",
+    "phoneNumber": "0123456789",
+    "avatar_url": "https://avatars.githubusercontent.com/u/3?v=4"
+},
+
+{
+    "id": "2",
+    "firstName": "Jane",
+    "lastName": "Doctor",
+    "email": "janedoe@email.com",
+    "password": "123456",
+    "phoneNumber": "012301230123",
+    "avatar_url": "https://avatars.githubusercontent.com/u/2?v=4"
+},
+{
+    "id": "3",
+    "firstName": "Smith",
+    "lastName": "Doctor",
+    "email": "johnsmith@email.com",
+    "password": "123456",
+    "phoneNumber": "123412341234",
+    "avatar_url": "https://avatars.githubusercontent.com/u/3?v=4"
+},
+{
+    "id": "4",
+    "firstName": "Jason",
+    "lastName": "Doctor",
+    "email": "janesmith@email.com",
+    "password": "123456",
+    "phoneNumber": "1932934121",
+    "avatar_url": "https://avatars.githubusercontent.com/u/5?v=4"
+},
+{
+    "id": "5",
+    "firstName": "Doe",
+    "lastName": "Doctor",
+    "email": "maindoe@email.com",
+    "password": "123456",
+    "phoneNumber": "12412235424",
+    "avatar_url": "https://avatars.githubusercontent.com/u/6?v=4"
+}
+]

@@ -4,7 +4,7 @@ import React from 'prop-types';
 
 const Navbar = ({ title }) => {
   return (
-    <nav className='navbar bg-primary'>
+    <nav className='navbar bg-primary' style={{backgroundColor:'darkcyan'}}>
       <h1>{title}</h1>
 
       <ul>
@@ -21,7 +21,7 @@ const Navbar = ({ title }) => {
 };
 
 Navbar.defaultProps = {
-  title: 'Portal',
+  title: 'Search',
 };
 
 Navbar.propTypes = {
