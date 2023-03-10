@@ -34,5 +34,16 @@
         "review": "VBNM,."
       }
     ]
+  },
+  {
+    "doctor_id": "4",
+    "rating": 4,
+    "reviews": [
+      {
+        "email": "eric14232477@lala.com",
+        "rating": 4,
+        "review": "good"
+      }
+    ]
   }
 ]

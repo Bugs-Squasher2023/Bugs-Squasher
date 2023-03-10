@@ -1,66 +1,48 @@
 import { useParams } from 'react-router-dom';
-import doctorsJson from '../database/doctors.json';
-import doctorReview from '../database/doctorReviews.json';
+import PatientJSON from '../database/patients.json';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/container.scss';
 import '../Styles/Search.scss';
 import Navbar from './Navbar';
 
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import { ButtonGroup } from '@mui/material';
 
 
-const DoctorProfile = () => {
+const PatientProfile = () => {
   let { id } = useParams();
   const navigate = useNavigate();
 
-  //Get doctors.json
-  const doctors = JSON.parse(JSON.stringify(doctorsJson));
-  const info = doctors.find((doctor) => doctor.id === id);
-
-  //Get doctorReviews.json
-  const reviewsJson = JSON.parse(JSON.stringify(doctorReview));
-  const reviewObject = reviewsJson.find((item) => item.doctor_id === id);
-
-  //When click handleReview, go to /review/doctor/id
-  const handleReview = () => {
-    navigate(`/review/doctor/${id}`);
-  };
-
-  const handleSchedule = async (e) => {
-    navigate(`/schedule/${id}`);
-  };
+  //Get patient.json
+  const patient = JSON.parse(JSON.stringify(PatientJSON));
+  const info = patient.find((patient) => patient.id === id);
 
   return (
     <div>
       <Navbar />
       <div className='container card text-center'>
         <h1>
-          <img
+          {/* <img
             src={info.ava_url}
             alt=''
             className='round-img'
             style={{ width: '200px' }}
-          />
+          /> */}
         </h1>
 
         <h1>
           {info.firstName} {info.lastName}
         </h1>
 
-        <h2> Specialty: {info.specialty} </h2>
-        {reviewObject && <h2> Rating: {reviewObject.rating} </h2>}
-        <h2> Phone Number: {info.number} </h2>
+        <h2> Phone Number: {info.phoneNumber} </h2>
 
-        <div style={{ margin: '30px' }}>
+        {/* <div style={{ margin: '30px' }}>
           <ButtonGroup variant='outlined' aria-label='outlined button group'>
             <Button onClick={handleSchedule}>Make appointment</Button>
             <Button onClick={handleReview}>Review</Button>
           </ButtonGroup>
-        </div>
+        </div> */}
 
-        {reviewObject &&
+        {/* {reviewObject &&
           reviewObject.reviews.map(function (item, i) {
             return (
               <div>
@@ -70,10 +52,10 @@ const DoctorProfile = () => {
                 <h3> {item.review} </h3>
               </div>
             );
-          })}
+          })} */}
       </div>
     </div>
   );
 };
 
-export default DoctorProfile;
+export default PatientProfile;
