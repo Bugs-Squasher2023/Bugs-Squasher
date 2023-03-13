@@ -75,7 +75,7 @@ const Navbar = ({ name, email, patientID }) => {
               >
                 <p 
                   className='dropdown-item text-right' 
-                  onClick={handlePatient} 
+                  onClick={handlePatient } style={{ cursor: 'pointer' }}
                 >
                   {' '}
                   {name} <br />
