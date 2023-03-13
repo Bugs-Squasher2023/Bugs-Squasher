@@ -1,114 +1,53 @@
-/* Define styles for the loading state /
-div[style="textAlign: center;"] {
-margin-top: 20px;
-}
+.DocSchedule{
+  .container{
+    .title{
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 40px;
+      color: darkslategrey;
+      width: fit-content;
+    }
+    .next-prev-buttons{
+      text-align: right;
+      button{
+        border: none;
+        color: white;
+        padding: 10px 35px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color:darkgreen;
+        margin-left: 10px;
+        box-shadow: 2px 2px 2px grey;
+      }
+    }
+    .generateHours{
+      .date-title{
+        background-color:steelblue;
+        color: white;
+        padding: 10px 35px;
+        text-align: center;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      .hour{
+        text-decoration-color: black;
+        background-color: #ffed94;
+        margin-top: 3px;
+        padding: 5px;
+        text-align: center;
+        border-radius: 5px;
+      }
+      .occupied{
+        background-color: #f7c743;
+        color: black;
+        font-weight: bold;
 
-/* Define styles for the main content */
-.title {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 20px;
+      }
+      .timeLink{
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
   }
   
-  .week-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  }
-  
-  .week-header .btn {
-  min-width: auto;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  }
-  
-  .week-header .btn:hover {
-  opacity: 0.8;
-  }
-  
-  .current-week {
-  background-color: #007bff;
-  }
-  
-  .current-week:hover {
-  background-color: darken(#007bff, 10%);
-  }
-  
-  .prev-week {
-  background-color: #dc3545;
-  }
-  
-  .prev-week:hover {
-  background-color: darken(#dc3545, 10%);
-  }
-  
-  .next-week {
-  background-color: #28a745;
-  }
-  
-  .next-week:hover {
-  background-color: darken(#28a745, 10%);
-  }
-  
-  .days {
-  display: flex;
-  justify-content: space-between;
-  background-color: #f2f2f2;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  }
-  
-  .days div {
-  flex-basis: calc(100% / 7);
-  text-align: center;
-  }
-  
-  /* Styles for day names */
-  .day-name {
-  text-transform: uppercase;
-  color: #888;
-  }
-  
-  /* Styles for day of the week */
-  .day-of-week {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  }
-  
-  .date {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  }
-  
-  .time-slot {
-  margin-bottom: 10px;
-  }
-  
-  a.timeLink {
-  min-width: 120px;
-  min-height: 40px;
-  background-color: #007bff;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  margin-right: 10px;
-  text-align: center;
-  }
-  
-  a.timeLink:hover {
-  background-color: darken(#007bff, 10%);
-  }
+}

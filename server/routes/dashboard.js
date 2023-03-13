@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const patients = require('../../halodoc/src/database/patients.json');
+const fs = require('fs');
 
 router.get('/', async (req, res) => {
   // console.log(req.session.patientID)
+  let patients = JSON.parse(fs.readFileSync('../halodoc/src/database/patients.json'))
+
   if (!req.session.patientID) {
       return res.redirect('/patientlogin');
     }

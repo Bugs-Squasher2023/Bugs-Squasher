@@ -1,0 +1,34 @@
+.DoctorDashboard{
+    .Greetings{
+        padding: 2%;
+        background-color: cornsilk;
+        border-radius: 20px;
+        .greet-text{
+            padding: 30px 30px 0px 40px ;
+        }
+    }
+    .DoctorDashboardInfo{
+        margin-top: 30px;
+        .btn{
+            width: 100%;
+            border: 3px solid darkgreen;
+            box-shadow: 5px 5px 5px grey;}
+       
+    }
+    .TodayAppointment{
+        .header{
+            background-color: lightgrey;
+        }
+    }
+}
+
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    .loading-text{
+        text-align: center;
+    }
+  
+}

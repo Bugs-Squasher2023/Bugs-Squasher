@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import patients from '../../database/patients.json';
 import '../../Styles/Styles.DocSchedule.scss'
-
-
+import DoctorNavbar from '../DoctorNavbar';
+import { useNavigate } from 'react-router-dom';
 // Since we have more data about the opening hours and closing hours and interval for each appointment,
 // this function is just to create an array of all the available time slots.
 // For example: 9:00 to 12:00 with interval 30 minutes:
@@ -44,7 +44,7 @@ const compareDates = (d1, d2) => {
 //const docInfoToSchedule
 
 const DocSchedule = () => {
-
+    const navigate = useNavigate();
     const [backendData, setBackendData] = useState({})
     const [loading, setLoading] = useState(true);
 
@@ -52,13 +52,11 @@ const DocSchedule = () => {
         axios.get(`/docschedule`)
         .then(({data}) => {
             setBackendData(data)
-            //console.log(data)
             setLoading(false)
             
           
         })
         .catch((err) => {   
-            console.log(err);
             setLoading(false);
         });
     }, [])
@@ -82,14 +80,8 @@ const DocSchedule = () => {
         interval = doctor.appointmentInterval;
         dayOff = doctor.dayOffs;
         doctorSchedule = backendData.doctorSchedule;
+       
     }
-        
-
-    
-    
-    
-    
-
     
 
     // When the page renders, get /schedule/:id from server.js and set the backend data.
@@ -103,14 +95,12 @@ const DocSchedule = () => {
     const months = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
 
     const hours = createTimeArray(startTime, endTime, interval);
-    const [currentWeekStartDate, setCurrentWeekStartDate] = useState(new Date());
+    const [currentWeekStartDate, setCurrentWeekStartDate] = useState(new Date(new Date().toLocaleDateString()));
 
 
     //Go through each time slot in the date and compare with the data in doctor/{id}.json
     //and check if there is an apointment at that time slot
     const getPatientName = (patientID) => {
-        console.log('patientid:' + patientID)
-
         const patient = patients.find((patient) => patient.id === patientID);
         if(patient != null){
             return `${patient.firstName} ${patient.lastName}`;
@@ -124,7 +114,7 @@ const DocSchedule = () => {
     
 
     const selectedTimeSlot = (date) => {
-        let tempHours = hours.slice();
+        let tempHours = createTimeArray(startTime, endTime, interval);
         
         for (let i = 0; i < dayOff.length; i++){
             if (date.getDay() === dayOff[i])
@@ -133,16 +123,20 @@ const DocSchedule = () => {
             if(doctorSchedule != null){
                 for (let i = 0; i < doctorSchedule.length; i++){
                     if (compareDates(date, doctorSchedule[i].date)){
+                        if (hours.includes(doctorSchedule[i].startTime)) {
+                            tempHours.splice(tempHours.indexOf(doctorSchedule[i].startTime), 1,
+                            doctorSchedule[i].startTime + ' with ' + getPatientName(doctorSchedule[i].patient_id));
+                        } 
+                        else {
+                            tempHours.push(doctorSchedule[i].startTime + ' with ' + getPatientName(doctorSchedule[i].patient_id));
+                        }
                         
-                        tempHours.splice(tempHours.indexOf(doctorSchedule[i].startTime), 1,
-                        doctorSchedule[i].startTime + ' with ' +
-                        getPatientName(doctorSchedule[i].patient_id));
                     }
                 }
             }
 
 
-        return tempHours
+        return tempHours.sort();
     }
 
     const handleNextWeekClick = () => {
@@ -158,14 +152,14 @@ const DocSchedule = () => {
             if (currentWeekStartDate > new Date())
                 lastWeekStartDate = new Date(currentWeekStartDate.getFullYear(), currentWeekStartDate.getMonth(), currentWeekStartDate.getDate() - 7);
             else
-                lastWeekStartDate = new Date()
+                lastWeekStartDate = new Date(new Date().toLocaleDateString())
             
             return lastWeekStartDate;
         })
     }
     
     const handleThisWeekClick = () => {
-        setCurrentWeekStartDate(new Date());
+        setCurrentWeekStartDate(new Date(new Date().toLocaleDateString()));
     }
     
     const generateWeeklyDates = () => {
@@ -180,59 +174,63 @@ const DocSchedule = () => {
     const weeklyDates = generateWeeklyDates();
 
     return (
-        <div>
+        <div className='DocSchedule'>
             {loading ? (
-            <div style={{textAlign: "center"}}>
-              
-              <h2> Loading </h2> <br/>
-            </div>
-            ):(
+                <div className='loading'>
+                  <h2 className='loading-text'> Loading </h2>
+                  <img src={require("../../Styles/img/loading.gif")} alt="" width="300px"/> 
+                </div>
+            ) : (
                 <div>
-                    <h1 style={{fontSize: "24px", fontWeight: "bold"}}>
-                    {doctor.firstName} {doctor.lastName}'s schedule 
-                    </h1>
+                    <DoctorNavbar name= {doctor.firstName + doctor.lastName} />
+                    <div className='container'>
+                        <div className='title'>
+                            <h1> {doctor.firstName} {doctor.lastName}'s schedule  </h1>
+                            <h2> {months[currentWeekStartDate.getMonth()]} {currentWeekStartDate.getFullYear()} </h2>
+                        </div>
+                        <div className='next-prev-buttons'>
+                            <button onClick={handleThisWeekClick}> Back to this week </button>      
+                            <button onClick={handleLastWeekClick}> prev </button>
+                            <button onClick={handleNextWeekClick}> next </button>
+                        </div>
 
-
-                    <h1> {months[currentWeekStartDate.getMonth()]} {currentWeekStartDate.getFullYear()} </h1>
-    
-                    <div style={{textAlign: 'right'}}>
-                        <button onClick={handleThisWeekClick}> Back to this week </button>      
-                        <button onClick={handleLastWeekClick}> prev </button>
-                        <button onClick={handleNextWeekClick}> next </button>
-                    </div>
-                    
-                    {weeklyDates.map(date => (
-                        <td key={date}>
-                            
-                            <div>{days[date.getDay()]} {date.getMonth()+1}/{date.getDate()}</div>
-
-                            {/* Generate all the eligible time slot */}
-                            {selectedTimeSlot(date).map(hour => ( 
-                                <div key={hour}>
-                                    {hour.length <= 5 ? (
-                                        new Date() < date ? (
-                                            <a href={`/makeappointment/${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}/${hour}`} className="timeLink"> 
-                                                {hour}
-                                            </a>
-                                        ) : (
-                                            <div>{hour}</div>
-                                        )
-                                    ) : (
-                                        new Date() < date ? (
-                                            <a href={`/modifyappointment/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}/${hour}`} className="timeLink">
-                                                {hour}
-                                            </a>
-                                        ) : (
-                                            <div>{hour}</div>
-                                        )   
-                                    )}
+                        <div className='generateHours'>
+                            <div className='container'>
+                                <div className='row'>
+                                    
+                                    {weeklyDates.map(date => (
+                                        <div className='col'>
+                                            <div className='date-title'>
+                                                <div>{days[date.getDay()]} {date.getMonth()+1}/{date.getDate()}</div>
+                                            </div>
+                                            <div className='scheduleHours'>
+                                                {selectedTimeSlot(date).map(hour => ( 
+                                                    <div key={hour}>
+                                                        
+                                                        {hour.length > 5 ? (
+                                                                
+                                                                <a onClick={() => {navigate(`/makeappointmentbydoctor/${date}/${hour}`)}}  className="timeLink"> 
+                                                                    <div className='hour occupied'> {hour}</div>
+                                                                </a>
+                                                            
+                                                            ):(
+                                                                <a onClick={() => {navigate(`/makeappointmentbydoctor/${date}/${hour}`)}}  className="timeLink"> 
+                                                                    <div className='hour'> {hour}</div>
+                                                                </a>
+                                                            )}
+                                                    </div>
+                                                ))} 
+                                            </div>
+                                        </div>
+                                    ))}
+                                    
                                 </div>
-                            ))} 
-                        </td>
-                    ))}
-                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
+    
         </div>
         
     )

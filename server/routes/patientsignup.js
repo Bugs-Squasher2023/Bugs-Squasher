@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const patients = require('../../halodoc/src/database/patients.json');
 
 
 router.post('/', async (req, res) => {
@@ -21,12 +20,7 @@ router.post('/', async (req, res) => {
 
   
   //Handle case that patient already existed
-  const patient = patients.find((patient) => patient.email === formData.email);
-  if (patient) {
-      console.log("Patient already exist")
-      res.json(null)
-      return;
-  }
+  
 
   try {
     let jsonData = fs.readFileSync('../halodoc/src/database/patients.json');
@@ -36,6 +30,14 @@ router.post('/', async (req, res) => {
     data = [];
     console.log('New database initialized.');
   }
+  const patient = data.find((patient) => patient.email === formData.email);
+
+  if (patient) {
+      console.log("Patient already exist")
+      res.json(null)
+      return;
+  }
+
   let lastPatientId = data.length > 0 ? parseInt(data[data.length-1].id): 0;
   let newPatientId = lastPatientId + 1; 
 
@@ -54,7 +56,7 @@ router.post('/', async (req, res) => {
     }
   })
 
-  res.send('Form submitted successfully!')
+  res.json({data: '/patientlogin'});
   
 });
 

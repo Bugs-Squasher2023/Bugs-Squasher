@@ -6,6 +6,7 @@
     "email": "johndoe@email.com",
     "password": "123456",
     "phoneNumber": "0123456789",
+    "Bdate": "2000-08-24",
     "gender": "male"
   },
   {
@@ -15,6 +16,7 @@
     "email": "janedoe@email.com",
     "password": "123456",
     "phoneNumber": "012301230123",
+    "Bdate": "2000-08-24",
     "gender": "female"
   },
   {
@@ -24,6 +26,7 @@
     "email": "johnsmith@email.com",
     "password": "123456",
     "phoneNumber": "123412341234",
+    "Bdate": "2000-08-24",
     "gender": "male"
   },
   {
@@ -33,6 +36,7 @@
     "email": "maindoe@email.com",
     "password": "123456",
     "phoneNumber": "12412235424",
+    "Bdate": "2000-08-24",
     "gender": "male"
   },
   {
@@ -63,7 +67,7 @@
     "password": "123456",
     "number": "7147286064",
     "Bdate": "2000-08-24",
-    "gender": "Female"
+    "gender": "female"
   },
   {
     "id": "9",
@@ -73,6 +77,146 @@
     "password": "123456",
     "number": "17147286064",
     "Bdate": "2003-09-16",
-    "gender": "Male"
+    "gender": "male"
+  },
+  {
+    "id": "10",
+    "firstName": "Mary",
+    "lastName": "Jones",
+    "email": "maryjones@email.com",
+    "password": "123456",
+    "number": "7147286064",
+    "Bdate": "1972-09-14",
+    "gender": "female"
+  },
+  {
+    "id": "11",
+    "firstName": "Thomas",
+    "lastName": "Joe",
+    "email": "thomasjoe@email.com",
+    "password": "123456",
+    "number": "7147286064",
+    "Bdate": "1989-01-01",
+    "gender": "other"
+  },
+  {
+    "id": "12",
+    "firstName": "Quynh",
+    "lastName": "Pham",
+    "email": "quynhpham@email.com",
+    "password": "123456",
+    "number": "7147286064",
+    "Bdate": "2000-02-04",
+    "gender": "other"
+  },
+  {
+    "id": "13",
+    "firstName": "Vu",
+    "lastName": "Nguyen",
+    "email": "vunguyen@email.com",
+    "password": "123456",
+    "number": "058224214",
+    "Bdate": "1995-01-01",
+    "gender": "male"
+  },
+  {
+    "id": "14",
+    "firstName": "Dong",
+    "lastName": "Le",
+    "email": "dongle@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1969-11-12",
+    "gender": "other"
+  },
+  {
+    "id": "15",
+    "firstName": "Thu",
+    "lastName": "Le",
+    "email": "thule@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1969-11-12",
+    "gender": "other"
+  },
+  {
+    "id": "16",
+    "firstName": "Ha",
+    "lastName": "Le",
+    "email": "hale@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1969-11-12",
+    "gender": "other"
+  },
+  {
+    "id": "17",
+    "firstName": "Thi",
+    "lastName": "Vo",
+    "email": "vothi9489@gmail.com",
+    "password": "123456",
+    "number": "17147286064",
+    "Bdate": "1972-05-12",
+    "gender": "female"
+  },
+  {
+    "id": "18",
+    "firstName": "Thi",
+    "lastName": "Vo",
+    "email": "vothi@gmail.com",
+    "password": "123456",
+    "number": "17147286064",
+    "Bdate": "1972-02-14",
+    "gender": "female"
+  },
+  {
+    "id": "19",
+    "firstName": "Lan",
+    "lastName": "Pham",
+    "email": "lanpham@email.com",
+    "password": "123456",
+    "number": "7147286064",
+    "Bdate": "1968-02-05",
+    "gender": "other"
+  },
+  {
+    "id": "20",
+    "firstName": "Michael",
+    "lastName": "Tran",
+    "email": "michaeltran@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1976-11-12",
+    "gender": "male"
+  },
+  {
+    "id": "21",
+    "firstName": "Michael",
+    "lastName": "Ton",
+    "email": "michaelton@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1976-11-12",
+    "gender": "male"
+  },
+  {
+    "id": "22",
+    "firstName": "Michael",
+    "lastName": "Nguyen",
+    "email": "michaelnguyen@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1976-11-12",
+    "gender": "male"
+  },
+  {
+    "id": "23",
+    "firstName": "Michael",
+    "lastName": "Lai",
+    "email": "michaellai@email.com",
+    "password": "123456",
+    "number": "7147285919",
+    "Bdate": "1976-02-13",
+    "gender": "male"
   }
 ]

@@ -36,13 +36,13 @@
     ]
   },
   {
-    "doctor_id": "4",
-    "rating": 4,
+    "doctor_id": "1",
+    "rating": 5,
     "reviews": [
       {
-        "email": "eric14232477@lala.com",
-        "rating": 4,
-        "review": "good"
+        "email": "ashleyle248@email.com",
+        "rating": 5,
+        "review": "Good amazing handsome doc"
       }
     ]
   }

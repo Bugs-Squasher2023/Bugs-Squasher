@@ -2,8 +2,6 @@ const express = require('express');
 const session = require('express-session');
 const fs = require('fs');
 const path = require('path')
-const patients = require('../halodoc/src/database/patients.json');
-const doctors = require('../halodoc/src/database/doctors.json');
 
 
 const app = express();
@@ -31,7 +29,11 @@ app.use('/patientsignup', require('./routes/patientsignup'));
 app.use('/review', require('./routes/review'));
 app.use('/makeappointment', require('./routes/makeappointment'));
 
+
+
 app.get('/patientUpcoming/:id', (req, res) => {
+  let doctors = JSON.parse(fs.readFileSync('../halodoc/src/database/doctors.json'))
+
   if (!req.session.patientID) {
     console.log('Not logged in');
     return res.redirect('/doctorlogin');
@@ -41,7 +43,7 @@ app.get('/patientUpcoming/:id', (req, res) => {
 
   const futureDates = patientSchedule.filter(entry => {
     const entryDate = new Date(entry.date);
-    return entryDate >= new Date();
+    return entryDate >= new Date(new Date().toLocaleDateString());
   });
 
   const filteredScheduleWithDoctorNames = futureDates.map((appointments,i) => {
@@ -74,34 +76,34 @@ app.post('/cancelAppointment', (req, res) => {
     return !(item.patient_id === req.session.patientID && item.startTime === req.body.startTime && item.date === req.body.date);
   });
 
-  fs.writeFileSync(fileNameDoctor, JSON.stringify(doctorSchedule, null, 2) + '\n');
+  doctorSchedule.sort((a, b) =>  (a.startTime < b.startTime )? 1 : -1).sort((a, b) => (new Date(a.date) > new Date(b.date)) ? 1 : -1)
 
+  fs.writeFileSync(fileNameDoctor, JSON.stringify(doctorSchedule, null, 2) + '\n');
 
   res.json({data: '/dashboard'})
 })
 
 
 
-app.post('/makeappointment/:date/:hour', (req, res) => {
-
+app.post('/makeappointmentbydoctor/:date/:hour', (req, res) => {
+  let patients = JSON.parse(fs.readFileSync('../halodoc/src/database/patients.json'))
   if(!req.session.doctorID){
     console.log('Not logged in')
     return res.redirect('/doctorlogin');
   }
 
-  const formData = req.body;
+  const patient_id = req.body.patientID;
   let dateObj = new Date(req.params.date);
-  console.log(dateObj)
-
-  const patient = patients.find((patient) => patient.firstName == formData.firstName && patient.lastName == formData.lastName);
+  // console.log(patient_id)
+  
   const newAppointment = {
     "doctor_id": req.session.doctorID,
-    "patient_id": patient.id,
+    "patient_id": patient_id,
     "startTime": req.params.hour,
     "date": dateObj.toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'}),
   };
   const doctorFileName = '../halodoc/src/database/appointment/doctor/' + req.session.doctorID + '.json';
-  const patientFileName = '../halodoc/src/database/appointment/patient/' + patient.id + '.json';
+  const patientFileName = '../halodoc/src/database/appointment/patient/' + patient_id + '.json';
 
   //write the appointment into both files (doctor and patient)
   try {
@@ -114,7 +116,6 @@ app.post('/makeappointment/:date/:hour', (req, res) => {
   console.log(newAppointment);
   doctorData.push(newAppointment);
   fs.writeFileSync(doctorFileName, JSON.stringify(doctorData, null, 2));
-
 
   try {
     let patientJsonData = fs.readFileSync(patientFileName);
@@ -133,19 +134,13 @@ app.post('/makeappointment/:date/:hour', (req, res) => {
 
 
 app.get('/docschedule', (req, res) =>{
+  let doctors = JSON.parse(fs.readFileSync('../halodoc/src/database/doctors.json'))
 
   if (!req.session.doctorID) {
     console.log('Not logged in');
     return res.redirect('/doctorlogin');
   }
   const fileName = '../halodoc/src/database/appointment/doctor/' + req.session.doctorID + '.json';
-
-  if (!fs.existsSync(fileName)) {
-    // If the file doesn't exist, create an empty array and write it to the file
-    const data = [];
-    fs.writeFileSync(fileName, JSON.stringify(data));
-    console.log('File created successfully');
-  }
 
   try{
     var doctorSchedule = JSON.parse(fs.readFileSync(fileName));
@@ -156,36 +151,72 @@ app.get('/docschedule', (req, res) =>{
     console.log('No schedule found');
   }
 
-
-
-  const doctorsJson = JSON.parse(JSON.stringify(doctors));
-  const currentDoctorJson = doctorsJson.find((doctor) => doctor.id === req.session.doctorID);
+  const currentDoctorJson = doctors.find((doctor) => doctor.id === req.session.doctorID);
   const currentDoctor = JSON.parse(JSON.stringify(currentDoctorJson));
 
-
-
-  res.json({currentDoctor: currentDoctor, doctorSchedule: doctorSchedule});
+  return res.json({currentDoctor: currentDoctor, doctorSchedule: doctorSchedule});
 
 })
 
 
 app.get('/schedule/:id', (req, res) => {
+  let patients = JSON.parse(fs.readFileSync('../halodoc/src/database/patients.json'))
+  if (!req.session.patientID) {
+      return res.redirect('/patientlogin');
+    }
 
-    if (!req.session.patientID) {
-        return res.redirect('/patientlogin');
-      }
+  const patient = patients.find((patient) => patient.id === req.session.patientID)
 
-    const patient = patients.find((patient) => patient.id === req.session.patientID)
-
-    const fileName = '../halodoc/src/database/appointment/doctor/' + req.params.id + '.json';
-    const doctorSchedule = JSON.parse(fs.readFileSync(fileName));
-
-    res.json({data: patient, doctorSchedule: doctorSchedule})
+  const fileName = '../halodoc/src/database/appointment/doctor/' + req.params.id + '.json';
+  const doctorSchedule = JSON.parse(fs.readFileSync(fileName));
+  return res.json({data: patient, doctorSchedule: doctorSchedule})
   });
+
+
+app.post('/editavailability', (req, res) => {
+  if(!req.session.doctorID){
+    console.log('Not logged in')
+    return res.redirect('/doctorlogin');
+  }
+
+  const { newStartHour, newStartMinute, newEndHour, newEndMinute, newInterval, newDaysOff } = req.body;
+  const doctorID = req.session.doctorID;
+  // doctor.startTime = `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`;
+
+  try{
+    
+    doctorsData = fs.readFileSync('../halodoc/src/database/doctors.json');
+    let doctors = JSON.parse(doctorsData);
+    const doctorIndex = doctors.findIndex((doctor) => doctor.id === doctorID);
+    const doctor = doctors[doctorIndex]
+
+
+    doctor.startTime = `${newStartHour.padStart(2, '0')}:${newStartMinute.padStart(2, '0')}`;
+    doctor.endTime = `${newEndHour.padStart(2, '0')}:${newEndMinute.padStart(2, '0')}`;
+
+    doctor.appointmentInterval = parseInt(newInterval);
+    doctor.dayOffs = newDaysOff;
+
+    console.log(1)
+    console.log(doctor)
+
+    fs.writeFileSync('../halodoc/src/database/doctors.json', JSON.stringify(doctors, null, 2) + '\n');
+
+    res.json('/doctordashboard');
+  }
+  catch(err)
+  {
+    console.log(err)
+    res.json('fail');
+  }
+});
+
 
 
 
 app.post('/doctorsignup', (req, res) => {
+  let doctors = JSON.parse(fs.readFileSync('../halodoc/src/database/doctors.json'))
+
   const formData = req.body;
   // console.log(formData);
   let data;
@@ -211,6 +242,13 @@ app.post('/doctorsignup', (req, res) => {
   const newDoctor = {
     id: newDoctorId.toString(),
     ...formData,
+    startTime: "9:00",
+    endTime: "17:00",
+    appointmentInterval: 30,
+    dayOffs: [
+      0,
+      6
+    ]
   };
   data.push(newDoctor);
   fs.writeFileSync('../halodoc/src/database/doctors.json', JSON.stringify(data, null, 2) + '\n');
@@ -221,7 +259,7 @@ app.post('/doctorsignup', (req, res) => {
       return;
     }
   })
-  res.send('Form submitted successfully!')
+  res.json({data: '/'})
 
 });
 

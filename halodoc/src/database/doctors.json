@@ -8,13 +8,10 @@
     "email": "johndoe@email.com",
     "password": "123456",
     "number": "0123456789",
-    "startTime": "9:00",
-    "endTime": "17:00",
-    "appointmentInterval": 20,
-    "dayOffs": [
-      0,
-      6
-    ]
+    "startTime": "09:20",
+    "endTime": "18:20",
+    "appointmentInterval": 120,
+    "dayOffs": []
   },
   {
     "ava_url": "https://avatars.githubusercontent.com/u/2?v=4",
@@ -25,12 +22,11 @@
     "email": "janedoe@email.com",
     "password": "123456",
     "number": "012301230123",
-    "startTime": "9:00",
+    "startTime": "09:00",
     "endTime": "17:00",
-    "appointmentInterval": 60,
+    "appointmentInterval": 25,
     "dayOffs": [
-      0,
-      6
+      1
     ]
   },
   {
@@ -94,7 +90,7 @@
     "password": "12345",
     "number": "7147286064",
     "Bdate": "2000-08-24",
-    "gender": "Female",
+    "gender": "female",
     "startTime": "9:00",
     "endTime": "17:00",
     "appointmentInterval": 30,
@@ -113,7 +109,7 @@
     "password": "dongle",
     "number": "17147285919",
     "Bdate": "1969-11-12",
-    "gender": "Male",
+    "gender": "male",
     "startTime": "9:00",
     "endTime": "17:00",
     "appointmentInterval": 30,
@@ -132,7 +128,7 @@
     "password": "123456",
     "number": "17147285919",
     "Bdate": "1969-11-12",
-    "gender": "Male",
+    "gender": "male",
     "startTime": "9:00",
     "endTime": "17:00",
     "appointmentInterval": 30,
@@ -151,7 +147,43 @@
     "password": "123456",
     "number": "17147285919",
     "Bdate": "1969-11-12",
-    "gender": "Male",
+    "gender": "male",
+    "startTime": "9:00",
+    "endTime": "17:00",
+    "appointmentInterval": 30,
+    "dayOffs": [
+      0,
+      6
+    ]
+  },
+  {
+    "id": "10",
+    "firstName": "Vu Huy",
+    "lastName": "Le",
+    "specialty": "Nutritionist",
+    "email": "vle29931@gmail.com",
+    "password": "123456",
+    "number": "7147286064",
+    "Bdate": "2003-09-16",
+    "gender": "male",
+    "startTime": "9:00",
+    "endTime": "17:00",
+    "appointmentInterval": 30,
+    "dayOffs": [
+      0,
+      6
+    ]
+  },
+  {
+    "id": "11",
+    "firstName": "Xuan",
+    "lastName": "Le",
+    "specialty": "ENT",
+    "email": "dongptc3@gmail.com",
+    "password": "123456",
+    "number": "17147285919",
+    "Bdate": "1969-01-01",
+    "gender": "male",
     "startTime": "9:00",
     "endTime": "17:00",
     "appointmentInterval": 30,

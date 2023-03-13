@@ -7,6 +7,11 @@ $min-width: 800px;
   }
   .patient-login-info{
     margin-left: 10%;
+    text-align: left;
+  }
+  .container
+  {
+    margin-top: 50px;
   }
 
   .picture{
@@ -14,12 +19,14 @@ $min-width: 800px;
       
       text-align: center;
   }
+  
 
   h1{
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       font-size: 40px;
       color: darkslategrey;
       margin-top: 60px;
+      
   }
 
   input{

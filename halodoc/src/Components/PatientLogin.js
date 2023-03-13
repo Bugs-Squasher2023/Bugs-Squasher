@@ -50,7 +50,7 @@ const PatientLogin = () => {
 
             <div className="col-lg-6">
               <div className='picture'>
-                <img src={require("../Styles/img/patient.png")} alt="" width='60%'/>
+                <img src={require("../Styles/img/patient.png")} alt="" width='400px'/>
               </div>
               
             </div>

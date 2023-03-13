@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const reviews = require('../../halodoc/src/database/doctorReviews.json');
 
 
 router.get('/', (req, res) => {
@@ -9,6 +8,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async(req, res) => {
+    let reviews = JSON.parse(fs.readFileSync('../halodoc/src/database/doctorReviews.json'))
+
     const doctor = reviews.find((doctor) => doctor.doctor_id === req.body.id);
 
     if (doctor){

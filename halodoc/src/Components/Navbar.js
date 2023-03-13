@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import '../Styles/Styles.Dashboard.scss';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-const Navbar = ({ name, email, patientID }) => {
+
+
+const Navbar = ({name, email,patientID,gender}) => {
   let navigate = useNavigate();
 
   const handlePatient = async (e) => {
@@ -30,43 +32,26 @@ const Navbar = ({ name, email, patientID }) => {
   return (
     <div>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-        {/* If not logged in then logo return to Introduction page, if logged in then logo return to dashboard */}
-        {typeof name !== 'undefined' ? (
-          <Link class='navbar-brand' to='/dashboard'>
-            <img
-              src={require('../Styles/img/HelloDoc_Logo.png')}
-              alt=''
-              width='250px'
-            />
-          </Link>
-        ) : (
-          <Link class='navbar-brand' to='/'>
-            <img
-              src={require('../Styles/img/HelloDoc_Logo.png')}
-              alt=''
-              width='250px'
-            />
-          </Link>
-        )}
+       ]
 
-        {/* If logged in then show the logo of the user on the top right*/}
-        {typeof name !== 'undefined' ? (
-          <div className='ms-auto'>
-            <div className='dropdown '>
-              <button
-                className='btn dropdown-toggle'
-                type='button'
-                id='dropdownMenuButton'
-                data-bs-toggle='dropdown'
-                aria-haspopup='true'
-                aria-expanded='false'
-              >
-                <img
-                  src={`https://xsgames.co/randomusers/assets/avatars/pixel/${patientID}.jpg`}
-                  alt={`Avatar for patient ${patientID}`}
-                  className='profile'
-                  style={{ borderRadius: '50%', width: '50px' }}
-                ></img>
+          {/* If not logged in then logo return to Introduction page, if logged in then logo return to dashboard */}
+          {(typeof name !== 'undefined') ? (
+            <Link className="navbar-brand" to='/dashboard'>
+              <img src={require("../Styles/img/HelloDoc_Logo.png")} alt="" width="250px"  />
+            </Link>
+          ):(<Link className="navbar-brand" to='/'>
+              <img src={require("../Styles/img/HelloDoc_Logo.png")} alt="" width="250px"  />
+            </Link>)}
+
+
+
+          {/* If logged in then show the logo of the user on the top right*/}
+          {(typeof name !== 'undefined') ? (
+          <div className="ms-auto">
+
+            <div className="dropdown ">
+              <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src={require(`../Styles/img/${gender}.png`)} alt={`Avatar for patient ${gender}`} className='profile' style={{ borderRadius: '50%', width:'50px' }}></img>
               </button>
 
               <div

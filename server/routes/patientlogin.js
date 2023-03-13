@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const patients = require('../../halodoc/src/database/patients.json');
+const fs = require('fs');
+
 
 router.get('/', (req, res) => {
   res.redirect('/patientlogin')
 });
 
 router.post('/', async (req, res) => {
+
+  let patients = JSON.parse(fs.readFileSync('../halodoc/src/database/patients.json'))
   const { email, password } = req.body;
   const patient = patients.find((patient) => patient.email === email && patient.password === password);
   if (!patient) {

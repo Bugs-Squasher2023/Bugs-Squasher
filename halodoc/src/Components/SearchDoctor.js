@@ -22,7 +22,7 @@ const SearchDoctor = () => {
                 </div>
             ) : (
                 <div>
-                    <Navbar name={backendData.data.firstName + ' ' + backendData.data.lastName} email={backendData.data.email} patientID={backendData.data.id}/>
+                    <Navbar name={backendData.data.firstName + ' ' + backendData.data.lastName} email={backendData.data.email} patientID={backendData.data.id} gender={backendData.data.gender}/>
                     <RunSearch />
                 </div>
             )}

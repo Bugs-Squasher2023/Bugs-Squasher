@@ -1,7 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Switch } from 'react-router';
-
 
 import Introduction from './Components/Introduction';
 import PatientLogin from './Components/PatientLogin';
@@ -20,6 +18,9 @@ import DocSchedule from './Components/Appointments/DocSchedule';
 import SearchDoctor from './Components/SearchDoctor';
 import MakeAppointment from './Components/Appointments/MakeAppointment';
 import PatientProfile from './Components/PatientProfile';
+import MakeAppointmentByDoctor from './Components/Appointments/MakeAppointmentByDoctor';
+import EditAvailbility  from './Components/EditAvailability';
+import AddPatient from './Components/AddPatient';
 
 
 function App() {
@@ -27,17 +28,17 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path='/' element={<Introduction/>}></Route>
-        <Route path='/dashboard' element={<Dashboard />}></Route>
-        <Route path='/searchdoctor' element={<SearchDoctor />}></Route>
-        <Route path='/Introduction' element={<Introduction />}></Route>
-        <Route path='/RunSearch' element={<RunSearch />}></Route>
-        <Route path='/dashboard' element={<Dashboard />}></Route>
-        <Route path='/doctorDashboard' element={<DoctorDashboard />}></Route>
-        <Route path='/patientLogin' element={<PatientLogin />}></Route>
-        <Route path='/doctorLogin' element={<DoctorLogin />}></Route>
-        <Route path='/patientsignup' element={<PatientSignup />}></Route>
-        <Route path='/doctorsignup' element={<DoctorSignUp />}></Route>
+        <Route path='/' element={<Introduction/>}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
+        <Route path='/searchdoctor' element={<SearchDoctor />}/>
+        <Route path='/Introduction' element={<Introduction />}/>
+        <Route path='/RunSearch' element={<RunSearch />}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
+        <Route path='/doctorDashboard' element={<DoctorDashboard />}/>
+        <Route path='/patientLogin' element={<PatientLogin />}/>
+        <Route path='/doctorLogin' element={<DoctorLogin />}/>
+        <Route path='/patientsignup' element={<PatientSignup />}/>
+        <Route path='/doctorsignup' element={<DoctorSignUp />}/>
         <Route path='/doctors/:id' element={<DoctorProfile />} />
         <Route path='/review/doctor/:id' element={<Review />} />
         <Route path='/schedule/:id' element={<Schedule />} />
@@ -51,6 +52,9 @@ function App() {
        
 
 
+        <Route path='/makeappointmentbydoctor/:date/:hour' element={<MakeAppointmentByDoctor />} />
+        <Route path='/editavailability'  element={<EditAvailbility />} />
+        <Route path= '/addpatient' element={<AddPatient/>}/>
     
       </Routes>
     </Router>

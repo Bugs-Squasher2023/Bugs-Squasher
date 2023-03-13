@@ -2,7 +2,13 @@
   {
     "doctor_id": "6",
     "patient_id": "2",
+    "startTime": "11:30",
+    "date": "3/16/2023"
+  },
+  {
+    "doctor_id": "6",
+    "patient_id": "9",
     "startTime": "12:00",
-    "date": "3/14/2023"
+    "date": "3/24/2023"
   }
 ]

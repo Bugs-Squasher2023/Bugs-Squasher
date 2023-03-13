@@ -8,6 +8,7 @@ import scheduleJson from '../../database/schedules.json'
 import '../../Styles/Styles.Schedule.scss'
 
 
+
 // Since we have more data about the opening hours and closing hours and interval for each appointment,
 // this function is just to create an array of all the available time slots.
 // For example: 9:00 to 12:00 with interval 30 minutes:
@@ -165,7 +166,7 @@ const Schedule = () => {
     const weeklyDates = generateWeeklyDates();
 
     return (
-        <div>
+        <div className='PatientSchedule'>
             
             {(typeof backendData.data === 'undefined') ? (
             <div style={{textAlign: "center"}}>
@@ -174,52 +175,51 @@ const Schedule = () => {
             </div>
             ):(
                 <div>
-                    <Navbar name={backendData.data.firstName + ' ' + backendData.data.lastName} email={backendData.data.email} patientID={backendData.data.id}/>
+                    <Navbar name={backendData.data.firstName + ' ' + backendData.data.lastName} email={backendData.data.email} patientID={backendData.data.id} gender={backendData.data.gender}/>                    
                     <div className='container'>
-                    <h2> Patient {backendData.data.firstName} making appointment with doctor {doctor.firstName} </h2>
-
-
-                    <h1> {months[currentWeekStartDate.getMonth()]} {currentWeekStartDate.getFullYear()} </h1>
-    
-                    <div style={{textAlign: 'right'}}>
+                    <div className='title'>
+                        <h2> Patient {backendData.data.firstName} making appointment with doctor {doctor.firstName} </h2>
+                        <h2> {months[currentWeekStartDate.getMonth()]} {currentWeekStartDate.getFullYear()} </h2>
+                    </div>
+                    <div className='next-prev-buttons'>
                         <button onClick={handleThisWeekClick}> Back to this week </button>      
                         <button onClick={handleLastWeekClick}> prev </button>
                         <button onClick={handleNextWeekClick}> next </button>
                     </div>
-                    <p> You chose {pickTime+" "} {pickDate} </p>
-                        {weeklyDates.map(date => (
-                            <td key={date}>
-            
-                                <td>{days[date.getDay()]} {date.getMonth()+1}/{date.getDate()}</td>
-                                <div class="radio-wrapper">
-                                {/* Generate all the eligible time slot */}
-                                {selectedTimeSlot(date).map(hour => ( 
-                                    <div onChange={(e) => {setPickTime(e.target.value); setPickDate((date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear())}}>
-                                        {new Date() < date &&
-                                           
-                                            
-                                            <div className="square-radio">
-                                            <input type="radio" name="my-radio" value={hour} />
-                                            <label >{hour}</label>
-                                            </div>
-                                        }
 
-                                        {new Date() >= date &&
-                                            <div>
-                                                <input type="radio" id="" name="hours" value={hour} className='timeRadioInput' disabled/>
-                                                <label>{hour}</label>
-                                            </div>
-                                        }
+                    <div className='generateHours'>
+                        <div className='container'>
+                            <div className='row'>
+                                
+                                {weeklyDates.map(date => (
+                                    
+                                    <div className='col'>
+                                        <div className='date-title'>
+                                            <div>{days[date.getDay()]} {date.getMonth()+1}/{date.getDate()}</div>
+                                        </div>
+                                        <div className='scheduleHours'>
+                                            {selectedTimeSlot(date).map(hour => ( 
+                                                <div onChange={(e) => {setPickTime(e.target.value); setPickDate((date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear())}}>
+                                                
+                                                <div key={hour}>
+                                                    <input type="radio" className="btn-check" name="my-radio" id={hour+(new Date(date))} value={hour}/>
+                                                    <label className="btn btn-outline-info" for={hour+(new Date(date))}> {hour} </label>
+                                                </div>
+                                                </div>
+                                            ))} 
+                                        </div>
                                     </div>
                                 ))}
 
-                                </div>
                                 
-                            </td>
-                        ))}
-                        <button onClick={handleSubmit}> SUBMIT </button>
+                            </div>
+                            
                         </div>
+                        <button onClick={handleSubmit} className='btn btn-success submitbtn'> SUBMIT </button>
+                    </div>
                 </div>
+            </div>
+            
             )}
         </div>
     )

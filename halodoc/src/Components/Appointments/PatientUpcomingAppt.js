@@ -39,12 +39,14 @@ const PatientUpcomingAppt = ({patientId,firstName,lastName}) => {
             <h3> Upcoming Appointments </h3>
             <div className='grid'>
                 {(typeof backendData.patientSchedule === 'undefined') ? (
-                    <p> Hello</p>
+                    <p> No upcoming appointments </p>
             
                 ):(
                     <div>
-                        {backendData.patientSchedule.map((appt,i) => (
-                            <div>
+                        {backendData.patientSchedule
+                        
+                        .map((appt,i) => (
+                            <div key={i}>
                                 <AppointmentInfo doctor_id = {appt.doctor_id} doctorName={appt.doctorName} specialty={appt.doctorSpecialty} startTime={appt.startTime} date={appt.date} pos={i}/>
                             </div>
                         ))}

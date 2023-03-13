@@ -9,9 +9,14 @@ $min-width: 800px;
     .text{
         margin-left: 0px;
     }
+    .container
+    {
+        margin-top: 50px;
+    }
     
     .picture{
         text-align: center;
+        margin-top: 100px;
            
     }
     
@@ -32,21 +37,31 @@ $min-width: 800px;
         
         border: none;
         color: white;
-        padding: 15px 32px;
+        padding: 15px 35px;
         text-align: center;
         display: inline-block;
         font-size: 16px;
         margin-top: 30px;
         cursor: pointer;
+        margin-right: 70px;
     }
     .button1
     {
-        background-color:olivedrab
+        background-color:olivedrab;
     }
     .button2
     {
-        background-color:steelblue
+        background-color:steelblue;
+
     }
+    .button3
+    {
+        background-color:darkseagreen;
+        border-radius: 10px;
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+    
  
 }
 

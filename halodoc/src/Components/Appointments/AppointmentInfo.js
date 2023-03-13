@@ -23,13 +23,6 @@ const AppointmentInfo = (appointment) => {
             const response = await axios.post('/cancelAppointment', appointment).then(
                 refreshPage()
             )
-           
-            
-            if(response.status === 200) {
-                console.log('successful');
-            } else {
-                console.log("Error Make Appointment");
-            }
         }
         catch (err) {
             console.error(err);

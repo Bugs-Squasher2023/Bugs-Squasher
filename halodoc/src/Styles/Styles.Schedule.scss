@@ -1,109 +1,47 @@
-.Schedule{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  /* Additional styles */
-  width: 100%;
-  max-width: 1200px;
-  .schedule-body{
-    display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  /* Additional styles */
-  width: 100%;
-  max-width: 1200px;
-  }
-.radio-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    width: 200px;
-  }
-  
-  .square-radio {
-    display: inline-block;
-    position: relative;
-    margin-right: 15px;
-    margin-bottom: 2px;
-    font-size: 16px;
-    user-select: none;
-    background-color: #ccc;
-    padding: 10px;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-  
-  .square-radio input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: -50%;
-  }
-  
-  .square-radio .radio-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .square-radio .radio-button {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #fff;
-    margin-right: 10px;
-    border-radius: 2px;
-  }
-  
-  .square-radio input:checked ~ .radio-content {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .square-radio input:checked ~ .radio-content .radio-button:before {
-    display: block;
-  }
-  
-  .square-radio .radio-button:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    background-color: #007bff;
-    display: none;
-  }
-  .square-radio .radio-button:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    background-color: white;
-    display: none;
-  }
-  
-  .square-radio:hover {
-    background-color: #eee;
-  }
-  
-  .square-radio input:checked ~ .radio-button {
-    background-color: #007bff;
-  }
-  
-  .square-radio input:checked ~ .radio-button:before {
-    display: block;
+.PatientSchedule{
+  .container{
+    .title{
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 40px;
+      color: darkslategrey;
+      width: fit-content;
+    }
+    .next-prev-buttons{
+      text-align: right;
+      button{
+        border: none;
+        color: white;
+        padding: 10px 35px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color:darkgreen;
+        margin-right: 20px;
+        box-shadow: 2px 2px 2px grey;
+      }
+    }
+    .generateHours{
+      .date-title{
+        background-color:steelblue;
+        color: white;
+        padding: 10px 35px;
+        text-align: center;
+        border-radius: 5px;
+        font-weight: bold;
+        
+      }
+      .btn{
+        width: 100%;
+        margin-top: 2px;
+      }
+      
+      .submitbtn{
+        margin-left: 20px;
+        width: 15%;
+        height: 3rem;
+      }
+
+      
+    }
   }
   
 }
