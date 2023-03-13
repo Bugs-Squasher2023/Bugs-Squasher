@@ -4,5 +4,11 @@
     "patient_id": "9",
     "startTime": "12:00",
     "date": "3/24/2023"
+  },
+  {
+    "doctor_id": "2",
+    "patient_id": "9",
+    "startTime": "09:25",
+    "date": "03/12/2023"
   }
 ]
