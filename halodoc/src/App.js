@@ -16,7 +16,7 @@ import RunSearch from './Components/Search/RunSearch';
 
 import DocSchedule from './Components/Appointments/DocSchedule';
 import SearchDoctor from './Components/SearchDoctor';
-import MakeAppointment from './Components/Appointments/MakeAppointment';
+// import MakeAppointment from './Components/Appointments/MakeAppointment';
 import PatientProfile from './Components/PatientProfile';
 import MakeAppointmentByDoctor from './Components/Appointments/MakeAppointmentByDoctor';
 import EditAvailbility  from './Components/EditAvailability';
@@ -43,15 +43,8 @@ function App() {
         <Route path='/review/doctor/:id' element={<Review />} />
         <Route path='/schedule/:id' element={<Schedule />} />
         <Route path='/docschedule' element={<DocSchedule />} />
-        <Route path='/makeappointment/:date/:hour' element={<MakeAppointment />} />
+        {/* <Route path='/makeappointment/:date/:hour' element={<MakeAppointment />} /> */}
         <Route path='/patientprofile/:id' element={<PatientProfile />} />
-
-
-        
-
-       
-
-
         <Route path='/makeappointmentbydoctor/:date/:hour' element={<MakeAppointmentByDoctor />} />
         <Route path='/editavailability'  element={<EditAvailbility />} />
         <Route path= '/addpatient' element={<AddPatient/>}/>

@@ -32,7 +32,6 @@ const Navbar = ({name, email,patientID,gender}) => {
   return (
     <div>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-       ]
 
           {/* If not logged in then logo return to Introduction page, if logged in then logo return to dashboard */}
           {(typeof name !== 'undefined') ? (
